@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-
+#include "timer.h"
 int     thread_count;
 int     m, n;
 double* A;
@@ -99,7 +99,7 @@ int main(int argc, char* argv[]) {
   elapsed = finish - start;
 
    Print_vector("El producto es:", y, m);
-   printf("Tiempo(Multiplicacion Matriz-Vector) = %e segundos\n", elapsed);
+   printf("Tiempo(Multiplicación Matriz-Vector) = %e segundos\n", elapsed);
    free(A);
    free(x);
    free(y);
