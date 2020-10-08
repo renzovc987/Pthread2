@@ -55,7 +55,6 @@ void *Pth_mat_vect(void* rank) {
    int my_first_row = my_rank*local_m;
    int my_last_row = my_first_row + local_m;
    register int sub = my_first_row*n;
-   double start, finish;
    double temp;
 
 #  ifdef DEBUG
@@ -63,7 +62,6 @@ void *Pth_mat_vect(void* rank) {
          my_rank, local_m, sub);
 #  endif
 
-   GET_TIME(start);
    for (i = my_first_row; i < my_last_row; i++) {
       y[i] = 0.0;
       for (j = 0; j < n; j++) {
@@ -72,9 +70,7 @@ void *Pth_mat_vect(void* rank) {
           y[i] += temp;
       }
    }
-   GET_TIME(finish);
-   printf("Thread %ld -> Tiempo = %e segundos\n", 
-      my_rank, finish - start);
+
 
    return NULL;
 }  
@@ -104,7 +100,7 @@ void Print_vector(char* title, double y[], double m) {
 int main(int argc, char* argv[]) {
    long       thread;
    pthread_t* thread_handles;
-
+   double start,finish,elapsed;
    if (argc != 4) Usage(argv[0]);
    thread_count = strtol(argv[1], NULL, 10);
    m = strtol(argv[2], NULL, 10);
@@ -128,17 +124,17 @@ int main(int argc, char* argv[]) {
 #  ifdef DEBUG
    Print_vector("Se genero:", x, n); 
 #  endif
-
+   GET_TIME(start);
    for (thread = 0; thread < thread_count; thread++)
       pthread_create(&thread_handles[thread], NULL,
          Pth_mat_vect, (void*) thread);
 
    for (thread = 0; thread < thread_count; thread++)
       pthread_join(thread_handles[thread], NULL);
-
-#  ifdef DEBUG
+   GET_TIME(finish);
+   elapsed = finish - start;
+   printf("Tiempo(Multiplicacion Matriz-Vector) = %e segundos\n", elapsed);
    Print_vector("El producto es:", y, m); 
-#  endif
 
    free(A);
    free(x);
