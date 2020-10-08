@@ -50,10 +50,8 @@ void* thread_oparation(void* rank)
         }
         else if(prob < mMember + mInsert )
         {
-            pthread_mutex_lock(&mutex);
             insert(r,&head);
             count_insert++;
-            pthread_mutex_unlock(&mutex);
         }
         else
         {           
