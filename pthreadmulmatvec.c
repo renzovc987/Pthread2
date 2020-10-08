@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
    thread_count = atoi(argv[1]);
    thread_handles = malloc(thread_count*sizeof(pthread_t));
 
-   printf("Enter m and n\n");
+   printf("Ingrese m y n\n");
    scanf("%d%d", &m, &n);
 
    A = malloc(m*n*sizeof(double));
