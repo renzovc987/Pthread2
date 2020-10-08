@@ -19,7 +19,7 @@ void Read_matrix(char* prompt, double A[], int m, int n) {
    printf("%s\n", prompt);
    for (i = 0; i < m; i++) 
       for (j = 0; j < n; j++)
-         scanf("%lf", &A[i*n+j]);
+         A[i][j] = 1;
 }  
 
 void Read_vector(char* prompt, double x[], int n) {
@@ -27,7 +27,7 @@ void Read_vector(char* prompt, double x[], int n) {
 
    printf("%s\n", prompt);
    for (i = 0; i < n; i++) 
-      scanf("%lf", &x[i]);
+      x[i] = 1;
 }  
 
 void *Pth_mat_vect(void* rank) {
@@ -83,10 +83,8 @@ int main(int argc, char* argv[]) {
    x = malloc(n*sizeof(double));
    y = malloc(m*sizeof(double));
    
-   Read_matrix("Ingrese la matriz:", A, m, n);
    Print_matrix("Matriz", A, m, n);
 
-   Read_vector("Ingrese el vector:", x, n);
    Print_vector("Vector", x, n);
   GET_TIME(start);
    for (thread = 0; thread < thread_count; thread++)
