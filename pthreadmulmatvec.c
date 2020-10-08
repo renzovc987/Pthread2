@@ -134,7 +134,9 @@ int main(int argc, char* argv[]) {
    GET_TIME(finish);
    elapsed = finish - start;
    printf("Tiempo(Multiplicacion Matriz-Vector) = %e segundos\n", elapsed);
+#  ifdef DEBUG
    Print_vector("El producto es:", y, m); 
+#  endif
 
    free(A);
    free(x);
