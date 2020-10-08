@@ -5,6 +5,7 @@
 #include <time.h>
 
 pthread_mutex_t head_mutex;
+pthread_mutex_t mutex;
 struct list_node_s
 {
     int data;
