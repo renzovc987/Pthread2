@@ -80,18 +80,18 @@ int  member(int value) {
    }
 
    if (temp == NULL || temp->data > value) {
-#     ifdef DEBUG
+#ifdef DEBUG
       printf("%d no esta en la lista\n", value);
-#     endif
+#endif
       if (temp == head)
          pthread_mutex_unlock(&head_mutex);
       if (temp != NULL) 
          pthread_mutex_unlock(&(temp->mutex));
       return 0;
    } else {
-#     ifdef DEBUG
+#ifdef DEBUG
       printf("%d esta en la lista\n", value);
-#     endif
+#endif
       if (temp == head)
          pthread_mutex_unlock(&head_mutex);
       pthread_mutex_unlock(&(temp->mutex));
