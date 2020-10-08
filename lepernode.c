@@ -3,7 +3,8 @@
 #include <math.h>
 #include <pthread.h>
 #include <time.h>
- 
+
+pthread_mutex_t head_mutex;
 struct list_node_s
 {
     int data;
